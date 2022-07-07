@@ -76,7 +76,8 @@ runs:
       if: steps.cov-build-cache.outputs.cache-hit != 'true'
       run: |
         curl https://scan.coverity.com/download/${{ inputs.build_language }}/${{ inputs.build_platform }} \
-          --no-progress-meter \
+          --silent \
+          --show-error \
           --output cov-analysis.tar.gz \
           --data "token=${TOKEN}&project=${{ steps.project.outputs.project }}"
       shell: bash
